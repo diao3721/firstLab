@@ -1,0 +1,20 @@
+import pyDes
+data = b"hello"
+
+key = b'1\x8e1\xcf\xf2\x0fV\xaa'
+'''txt = input("请输入需要解密的文本:")
+txt = bytes(txt, encoding="utf-8")
+print(type(txt))
+print(txt)
+#txt = bytes(txt, encoding="utf8")
+print(txt)
+key = input("请输入8位秘钥:")
+print(key)
+key = bytes(key, encoding="utf-8")
+print(key)'''
+k = pyDes.des(b"DESCRYPT", pyDes.CBC, b"\0\0\0\0\0\0\0\0", pad=None, padmode=pyDes.PAD_PKCS5)
+d = k.encrypt(data)
+
+e = k.decrypt(key)
+print(bytes.decode(e))
+print("解密后的信息: %r" % k.decrypt(key))
