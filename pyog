@@ -1,0 +1,25 @@
+import pyDes
+
+# For Python3, you'll need to use bytes, i.e.:
+data = b'hello'
+print(data)
+print(type(data))
+print("----------------------")
+k = pyDes.des(b"DESCRYPT", pyDes.CBC, b"\0\0\0\0\0\0\0\0", pad=None, padmode=pyDes.PAD_PKCS5)
+d = k.encrypt(data)
+print(type(d))
+print(d)
+print("----------------------")
+c = k.decrypt(d)
+print(type(c))
+print(c)
+print("----------------------")
+print ("Encrypted: %r" % d)
+print ("Decrypted: %r" % k.decrypt(d))
+print("----------------------")
+#assert k.decrypt(d) == data
+print(type(d))
+print(d)
+print("----------------------")
+d = str(d, encoding = "utf-8")
+print(d)
