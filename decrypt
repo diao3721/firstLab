@@ -1,20 +1,86 @@
 import pyDes
-data = b"hello"
-
+'''data = b"hello"
+key_1 = b'\xa7)\xa8\x16\xa3\x0f\xce\x91'
 key = b'1\x8e1\xcf\xf2\x0fV\xaa'
-'''txt = input("请输入需要解密的文本:")
+
+#DE D3 82 EA FB 2A 59 E4
+g =[]
+f = key_1[0]
+for g in key_1:
+    print(g)
+print("--------------")'''
+key_2 = b'\xde\xd3\x82\xea\xfb*Y\xe4'
+print(key_2)
+print("--------------------")
+
+#for h in key_2:
+#    print(h)
+def trans(s):
+    return "b'%s'" % ''.join('\\x%.2x' % x for x in s)
+g = trans(key_2)
+print(type(key_2))
+print(type(g))
+print(trans(key_2))
+print(str.encode(g))
+print("--------------------")
+key_3 = b'\xde\xd3\x82\xea\xfb\x2a\x59\xe4'
+temp = chr(key_3[1])
+print(temp)
+print(type(temp))
+print("--------------------")
+temp = ord(temp)
+print(type(temp))
+print(temp)
+print("--------------------")
+print(ord(chr(key_3[1])))
+for y in key_3:
+    print(chr(y),end="")
+print("\n"+"--------------------")
+str = [chr(z) for z in key_3]
+print("\n",str)
+print("--------------------")
+h = [hex(x) for x in bytes(b'\xde\xd3\x82\xea\xfb\x2a\x59\xe4')]
+print(h)
+print(type(h))
+print(type(h[2]))
+print("--------------------")
+print(type(key_3))
+print("--------------------")
+#d = str(key_1, encoding = "utf-8")
+#d = bytes.decode(key_1)
+#print(f)
+#txt = [input("文本:")]
+txt_t = [ord(x) for x in input("输入")]
+print(txt_t)
+print(type(txt_t[1]))
+print("--------------------")
+txt_2 = [hex(x) for x in txt_t]
+print(txt_2)
+print(type(txt_2[1]))
+print("--------------------")
+#txt = input("请输入需要解密的文本:")
+print(txt)
+print(type(txt))
+print("--------------------")
+for txt_1 in txt:
+    print(ord(txt_1),end='')
+txt_1 = ord(txt)
+txt_1 = bytes(hex(int(txt_1)),encoding="utf-8")
+print(txt_1)
+print(type(txt_1))
+print(ord(txt))
+print(type(txt))
 txt = bytes(txt, encoding="utf-8")
+#txt = bytes(txt, encoding="utf8")
 print(type(txt))
 print(txt)
-#txt = bytes(txt, encoding="utf8")
-print(txt)
-key = input("请输入8位秘钥:")
+'''key = input("请输入8位秘钥:")
 print(key)
 key = bytes(key, encoding="utf-8")
 print(key)'''
-k = pyDes.des(b"DESCRYPT", pyDes.CBC, b"\0\0\0\0\0\0\0\0", pad=None, padmode=pyDes.PAD_PKCS5)
-d = k.encrypt(data)
+k = pyDes.des(b"DESCRYPT", pyDes.CBC, b"\1\0\1\1\0\0\1\0", pad=None, padmode=pyDes.PAD_PKCS5)
+d = k.encrypt(txt)
 
-e = k.decrypt(key)
+e = k.decrypt(txt)
 print(bytes.decode(e))
-print("解密后的信息: %r" % k.decrypt(key))
+print("解密后的信息: %r" % k.decrypt(txt))
