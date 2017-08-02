@@ -2,8 +2,6 @@ from pyDes import *
 #data = "Please encrypt my data"
 #k = des("DESCRYPT", CBC, "\0\0\0\0\0\0\0\0", pad=None, padmode=PAD_PKCS5)
 # For Python3, you'll need to use bytes, i.e.:
-
-
 def trans(s):
     return "b'%s'" % ''.join('\\x%.2x' % x for x in s)
 
@@ -15,13 +13,27 @@ def encrypt(a):
         key = bytes(key, encoding="utf-8")
         k = des(key, CBC, b"\1\0\1\1\0\0\1\0", pad=None, padmode=PAD_PKCS5)
         d = k.encrypt(data)
-        print("加密后的信息: %r" % d)
+        print(type(d[0]))
+        h = [chr(x) for x in d]
+        print(h)
+        for g in d:
+            print(chr(g),end="")
+        print("|←这个之前的都是")
+        #for g in d:
+        #    print(g)
+        #print(d)
+        #print("加密后的信息: %r" % d)
     elif a == '1':
         key = input("输入16位或者24位位秘钥:")
         key = bytes(key, encoding="utf-8")
         k = triple_des(key, CBC, b"\1\0\1\1\0\0\1\0", pad=None, padmode=PAD_PKCS5)
         d = k.encrypt(data)
-        print("加密后的信息: %r" % d)
+        print(type(d[0]))
+        h = [chr(x) for x in d]
+        print(h)
+        for g in d:
+            print(chr(g), end="")
+        print("←|这个之前的都是")
     else:
         print("输入错了！")
 
